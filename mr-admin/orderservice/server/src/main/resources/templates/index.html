@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        /*
+        //简写形式，效果相同
+        $.getJSON("http://app.example.com/base/json.do?sid=1494&busiId=101&jsonpCallback=?",
+                function(data){
+                    $("#showcontent").text("Result:"+data.result)
+        });
+        */
+        $.ajax({
+            type: "get",
+            async: false,
+            url: "localhost:8990//order/baseJson?sid=1494&busiId=101",
+            dataType: "jsonp",//数据类型为jsonp
+            jsonp: "jsonpCallback",//服务端用于接收callback调用的function名的参数
+            success: function (data) {
+                $("#showcontent").text("Result:" + data.result)
+            },
+            error: function () {
+                alert('fail');
+            }
+        });
+    });
+</script>
+</html>
